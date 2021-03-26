@@ -1,0 +1,8 @@
+dask-emr-hello-world/cluster.json
+dask-emr-hello-world/default-roles.json
+init.sh
+spark-emr-hello-world/cluster.json
+spark-emr-hello-world/ec2-key-pair.json
+spark-emr-hello-world/mykeypair.pem
+spark-emr-hello-world/steps.json
+venv
