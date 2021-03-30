@@ -132,6 +132,8 @@ Make sure there is the same python environment on the local as on the cluster.**
 SSH forwarding for Jupyter notebooks
 
 ```bash
+scp -i ../spark-emr-hello-world/mykeypair.pem dask-test.ipynb hadoop@$MASTER_DNS_NAME:~/.
+
 ssh -i ../spark-emr-hello-world/mykeypair.pem -N -L 8888:$MASTER_DNS_NAME:8888 hadoop@$MASTER_DNS_NAME
 ```
 
