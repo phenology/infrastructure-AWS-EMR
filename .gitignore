@@ -1,5 +1,7 @@
 dask-emr-hello-world/cluster.json
 dask-emr-hello-world/default-roles.json
+dask-emr-no-bootstrap/cluster.json
+dask-emr-no-bootstrap/environment.tar.gz
 init.sh
 spark-emr-hello-world/cluster.json
 spark-emr-hello-world/ec2-key-pair.json

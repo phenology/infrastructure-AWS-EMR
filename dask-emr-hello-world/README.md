@@ -1,11 +1,12 @@
 # Quick-start example on Amazon EMR cluster with Dask
 
-- [x] Create an Amazon EMR cluster with Dask using AWS CLI
+- [x] Create an Amazon EMR cluster with Dask using AWS CLI, install packages with a bootstrap script
 - [x] View bootstrap logs in S3
 - [x] Create a Dask cluster from the master node
 - [x] Connect to the scheduler from the master node and run a test job
 - [ ] Connect to the scheduler from a local machine using SSH port forwarding and run a test job
 - [x] Use port forwarding for Jupyter, create a Dask cluster from a notebook and run a test job
+- [x] Expose port for Jupyter
 - [ ] Run a test job on a dataset in S3
 
 https://yarn.dask.org/en/latest/aws-emr.html
@@ -55,7 +56,7 @@ aws ec2 authorize-security-group-ingress --group-name ElasticMapReduce-master --
 
 MASTER_DNS_NAME=$(aws emr describe-cluster --cluster-id $CLUSTER_ID | jq -r .Cluster.MasterPublicDnsName)
 ssh hadoop@$MASTER_DNS_NAME -i ../spark-emr-hello-world/mykeypair.pem
-
+/
 aws emr ssh --cluster-id $CLUSTER_ID --key-pair-file ../spark-emr-hello-world/mykeypair.pem
 
 # List all nodes
@@ -129,15 +130,25 @@ Make sure there is the same python environment on the local as on the cluster.**
 
 # Create a Dask cluster in Jupyter
 
+```bash
+scp -i ../spark-emr-hello-world/mykeypair.pem dask-test.ipynb hadoop@$MASTER_DNS_NAME:~/.
+```
+
 SSH forwarding for Jupyter notebooks
 
 ```bash
-scp -i ../spark-emr-hello-world/mykeypair.pem dask-test.ipynb hadoop@$MASTER_DNS_NAME:~/.
-
 ssh -i ../spark-emr-hello-world/mykeypair.pem -N -L 8888:$MASTER_DNS_NAME:8888 hadoop@$MASTER_DNS_NAME
 ```
 
 Access Jupyter in the browser http://localhost:8888/ with password `dask-user` and run the (dask-test.ipynb)[dask-test.ipynb] notebook.
+
+Alternatively, expose port for Jupyter.
+
+```bash
+MY_IP=$(curl https://checkip.amazonaws.com)
+aws ec2 authorize-security-group-ingress --group-name ElasticMapReduce-master --protocol tcp --port 8888 --cidr $MY_IP/32
+# aws ec2 update-security-group-rule-descriptions-ingress --group-name ElasticMapReduce-master --ip-permissions "IpProtocol=tcp,FromPort=8888,ToPort=8888,IpRanges=[{CidrIp=$MY_IP/32,Description=\"Jupyter access from home\"}]"
+```
 
 # Clean-up
 

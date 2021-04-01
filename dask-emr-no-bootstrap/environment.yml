@@ -1,0 +1,13 @@
+name: emr
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pyarrow
+  - dask-yarn[version='>=0.7.0']
+  - conda-pack
+  - s3fs
+  - notebook
+  - ipywidgets
+  - jupyter-server-proxy
+prefix: /Users/davids/miniconda/envs/emr
