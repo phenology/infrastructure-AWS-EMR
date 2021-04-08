@@ -5,7 +5,7 @@ Scripts and documentation on how to deploy an Amazon EMR cluster with Dask for r
 - [dask-emr-hello-world](dask-emr-hello-world) is a quick-start example on setting up an Amazon EMR cluster with Dask using AWS CLI and running a test job.
 - [dask-emr-no-bootstrap](dask-emr-no-bootstrap) Setting up an Amazon EMR cluster with pre-installed packages and Docker support
 - [dask-ecs](dask-ecs) Setting up Dask with Amazon ECS and Docker
-
+- [cgc-test](cgc-test) contains a test analysis notebook and illustrates how to set up the environment.  
 ```bash
 aws ce get-cost-and-usage --time-period Start=2021-03-01,End=2021-03-31 --metrics "BlendedCost" "UnblendedCost" "UsageQuantity" --granularity MONTHLY
 ```
