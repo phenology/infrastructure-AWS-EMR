@@ -1,7 +1,12 @@
+conda-pack/cluster.json
+conda-pack/environment.tar.gz
 dask-emr-hello-world/cluster.json
 dask-emr-hello-world/default-roles.json
-dask-emr-no-bootstrap/cluster.json
-dask-emr-no-bootstrap/environment.tar.gz
+dask-emr-terraform/.terraform.lock.hcl
+dask-emr-terraform/.terraform/
+dask-emr-terraform/private.pem
+dask-emr-terraform/terraform.tfstate
+dask-emr-terraform/terraform.tfstate.backup
 init.sh
 spark-emr-hello-world/cluster.json
 spark-emr-hello-world/ec2-key-pair.json

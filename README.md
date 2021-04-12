@@ -3,9 +3,11 @@
 Scripts and documentation on how to deploy an Amazon EMR cluster with Dask for running the high spatial resolution modelling can be found here.
 - [spark-emr-hello-world](spark-emr-hello-world) is a quick-start example on setting up an Amazon EMR cluster with Spark using AWS CLI and running a test job.
 - [dask-emr-hello-world](dask-emr-hello-world) is a quick-start example on setting up an Amazon EMR cluster with Dask using AWS CLI and running a test job.
-- [dask-emr-no-bootstrap](dask-emr-no-bootstrap) Setting up an Amazon EMR cluster with pre-installed packages and Docker support
+- [conda-pack](conda-pack) Setting up an Amazon EMR cluster with pre-installed packages
 - [dask-ecs](dask-ecs) Setting up Dask with Amazon ECS and Docker
-- [cgc-test](cgc-test) contains a test analysis notebook and illustrates how to set up the environment.  
+- [dask-emr-terraform](dask-emr-terraform) Terraform module for Amazon EMR with Dask
+- [cgc-test](cgc-test) contains a test analysis notebook and illustrates how to set up the environment.
+
 ```bash
 aws ce get-cost-and-usage --time-period Start=2021-03-01,End=2021-03-31 --metrics "BlendedCost" "UnblendedCost" "UsageQuantity" --granularity MONTHLY
 ```

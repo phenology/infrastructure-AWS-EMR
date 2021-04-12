@@ -51,7 +51,8 @@ SSH access
 
 ```bash
 MY_IP=$(curl https://checkip.amazonaws.com)
-aws ec2 authorize-security-group-ingress --group-name ElasticMapReduce-master --protocol tcp --port 22 --cidr $MY_IP/32
+aws ec2 authorize-security-group-ingress --group-name ElasticMapReduce-master --protocol tcp --port 22 --cidr 0.0.0.0/0
+# aws ec2 authorize-security-group-ingress --group-name ElasticMapReduce-master --protocol tcp --port 22 --cidr $MY_IP/32
 # aws ec2 describe-security-groups --group-names ElasticMapReduce-master
 
 MASTER_DNS_NAME=$(aws emr describe-cluster --cluster-id $CLUSTER_ID | jq -r .Cluster.MasterPublicDnsName)
@@ -146,7 +147,8 @@ Alternatively, expose port for Jupyter.
 
 ```bash
 MY_IP=$(curl https://checkip.amazonaws.com)
-aws ec2 authorize-security-group-ingress --group-name ElasticMapReduce-master --protocol tcp --port 8888 --cidr $MY_IP/32
+aws ec2 authorize-security-group-ingress --group-name ElasticMapReduce-master --protocol tcp --port 8888 --cidr 0.0.0.0/0
+# aws ec2 authorize-security-group-ingress --group-name ElasticMapReduce-master --protocol tcp --port 8888 --cidr $MY_IP/32
 # aws ec2 update-security-group-rule-descriptions-ingress --group-name ElasticMapReduce-master --ip-permissions "IpProtocol=tcp,FromPort=8888,ToPort=8888,IpRanges=[{CidrIp=$MY_IP/32,Description=\"Jupyter access from home\"}]"
 ```
 

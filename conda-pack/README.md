@@ -1,7 +1,6 @@
 # Amazon EMR cluster with Dask and pre-installed packages
 
 - [ ] Create an Amazon EMR cluster, copy pre-installed packages from S3
-- [ ] Configure Docker
 
 # Create an Amazon EMR cluster, copy pre-installed packages from S3
 
@@ -54,7 +53,7 @@ https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-bootstrap.html
 ```bash
 # aws s3 mb s3://twente-dask-emr-hello-world
 aws s3 cp environment.tar.gz s3://twente-dask-emr-hello-world/bootstrap/environment.tar.gz
-aws s3 cp bootstrap-copy-environment.sh s3://twente-dask-emr-hello-world/bootstrap/bootstrap-copy-environment.sh
+aws s3 cp bootstrap-copy-env.sh s3://twente-dask-emr-hello-world/bootstrap/bootstrap-copy-env.sh
 aws s3 ls s3://twente-dask-emr-hello-world/bootstrap/
 
 aws emr create-cluster --name "My Dask Trial Cluster" \
@@ -64,7 +63,7 @@ aws emr create-cluster --name "My Dask Trial Cluster" \
   --ec2-attributes KeyName=MyKeyPair \
   --instance-type m5.xlarge \
   --instance-count 3 \
-  --bootstrap-actions Path=s3://twente-dask-emr-hello-world/bootstrap/bootstrap-copy-environment.sh \
+  --bootstrap-actions Path=s3://twente-dask-emr-hello-world/bootstrap/bootstrap-copy-env.sh \
   --use-default-roles \
   > cluster.json
 
@@ -84,10 +83,6 @@ MASTER_DNS_NAME=$(aws emr describe-cluster --cluster-id $CLUSTER_ID | jq -r .Clu
 
 scp -i ../spark-emr-hello-world/mykeypair.pem ../dash-emr-hello-world/dask-test.ipynb hadoop@$MASTER_DNS_NAME:~/.
 ```
-
-# Configure Docker
-
-https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-docker.html
 
 # Clean-up
 
