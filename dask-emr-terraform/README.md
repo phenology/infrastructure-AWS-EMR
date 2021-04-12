@@ -11,7 +11,7 @@ https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/emr_
 | core_instance_type | Core instance type | string | m5.xlarge |
 | core_instance_count | Core instance count | number | 2 |
 | allowed_cidr | CIDR blocks allowed to access the master instance on port 22 (ssh) | list | 0.0.0.0/0
-| jupyter_password | Jupyter notebook server password | dask-user |
+| jupyter_password | Jupyter notebook server password | string | dask-user |
 
 # Module Outputs
 
