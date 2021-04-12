@@ -25,11 +25,18 @@ https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/emr_
 
 # Example usage
 
+The default values for the terraform module, specified in [dask-emr/variables.tf](dask-emr/variables.tf), are overriden in [main.tf](main.tf).
+In this example, a master instance of type `m5.xlarge` with 4 cores and 16 GiB memory and four core instances of type `m5.2xlarge` with 8 cores and 32 GiB memory are deployed.
+
 ```bash
 terraform init
 terraform plan
 terraform apply
+```
 
+Establish SSH forwarding for the juypter notebook server.
+
+```bash
 terraform output -raw private_key > private.pem
 chmod 600 private.pem
 export MASTER_DNS_NAME=$(terraform output -raw emr_master_public_dns)
@@ -39,7 +46,9 @@ echo $MASTER_DNS_NAME
 ssh -i private.pem -N -L 8888:$MASTER_DNS_NAME:8888 hadoop@$MASTER_DNS_NAME
 ```
 
-http://localhost:8888/
+Access the jupyter notebook server at http://localhost:8888/
+
+Remove the infrastructure at the end.
 
 ```bash
 terraform destroy

@@ -1,9 +1,9 @@
 module "dask_emr" {
     source = "./dask-emr"
-    emr_name = var.emr_name
-    master_instance_type = var.master_instance_type
-    core_instance_type = var.core_instance_type
-    core_instance_count = var.core_instance_count
-    allowed_cidr = var.allowed_cidr
-    jupyter_password = var.jupyter_password
+    emr_name = "emr-test-david"
+    master_instance_type = "m5.xlarge"
+    core_instance_type = "m5.2xlarge"
+    core_instance_count = 4
+    allowed_cidr = ["0.0.0.0/0"]
+    jupyter_password = "dask-user"
 }
