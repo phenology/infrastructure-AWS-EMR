@@ -113,6 +113,7 @@ conda-pack \
 tornado=6.1 \
 $EXTRA_CONDA_PACKAGES
 
+# Extra packages needed for CGC
 # https://github.com/escience-academy/tutorial-cgc/blob/main/environment.yml 
 conda install -c conda-forge -y -q gdal
 pip install rasterio xarray clustering-geodata-cubes
