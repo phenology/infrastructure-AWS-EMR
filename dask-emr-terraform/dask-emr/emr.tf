@@ -10,9 +10,14 @@ resource "aws_emr_cluster" "emr_cluster" {
   ec2_attributes {
     key_name                          = aws_key_pair.this.key_name
     subnet_id                         = aws_subnet.public.id
+
+    # The security group attributes are optional.
+    # If not specified, default Amazon EMR-Managed Security Groups will be used.
+    # http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-man-sec-groups.html
     additional_master_security_groups = aws_security_group.public.id
     emr_managed_master_security_group = aws_security_group.managed_master.id
     emr_managed_slave_security_group  = aws_security_group.managed_slave.id
+
     instance_profile                  = aws_iam_instance_profile.emr_profile.arn
   }
 

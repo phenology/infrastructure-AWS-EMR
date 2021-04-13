@@ -34,6 +34,15 @@ terraform plan
 terraform apply
 ```
 
+The bootstrap script and logs can be accessed in the S3 bucket.
+This bucket will be deleted with `terraform destroy`.
+Do not use it for the input and output data of your jobs.
+
+```bash
+BUCKET_ID=$(terraform output -raw s3_bucket_id)
+aws s3 ls $BUCKET_ID
+```
+
 Establish SSH forwarding for the juypter notebook server.
 
 ```bash
@@ -47,6 +56,16 @@ ssh -i private.pem -N -L 8888:$MASTER_DNS_NAME:8888 hadoop@$MASTER_DNS_NAME
 ```
 
 Access the jupyter notebook server at http://localhost:8888/
+
+Alternatively, the port for the jupyter notebook server can be openned in the corresponding security group.
+However, this is a hack. We should not be touching the infrastructure that has been deployed and is managed by Terraform.
+It is on the todo list to figure out how to do this with Terraform directly.
+Terraform complains when ports other than 22 are open for an EMR cluster.
+
+```
+GROUP_ID=$(aws ec2 describe-security-groups --filters Name=group-name,Values=public --query "SecurityGroups[*].GroupId" | jq -r ".[0]")
+aws ec2 authorize-security-group-ingress --group-id $GROUP_ID --protocol tcp --port 8888 --cidr 0.0.0.0/0
+```
 
 Remove the infrastructure at the end.
 
