@@ -67,6 +67,14 @@ GROUP_ID=$(aws ec2 describe-security-groups --filters Name=group-name,Values=pub
 aws ec2 authorize-security-group-ingress --group-id $GROUP_ID --protocol tcp --port 8888 --cidr 0.0.0.0/0
 ```
 
+Once deployed, the EMR cluster can be easily modified.
+
+```bash
+# Change the number of worker nodes or the flavour in main.tf
+vim main.tf
+terraform apply
+```
+
 Remove the infrastructure at the end.
 
 ```bash

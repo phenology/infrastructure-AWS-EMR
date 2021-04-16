@@ -8,6 +8,7 @@
 - [x] Use port forwarding for Jupyter, create a Dask cluster from a notebook and run a test job
 - [x] Expose port for Jupyter
 - [ ] Run a test job on a dataset in S3
+- [ ] Scale the EMR cluster once deployed
 
 https://yarn.dask.org/en/latest/aws-emr.html
 

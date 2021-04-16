@@ -4,7 +4,7 @@
 
 # IAM role for EMR Service
 resource "aws_iam_role" "iam_emr_service_role" {
-  name = "iam_emr_service_role"
+  # name = "iam_emr_service_role"
 
   assume_role_policy = <<EOF
 {
@@ -24,7 +24,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "iam_emr_service_policy" {
-  name = "iam_emr_service_policy"
+  # name = "iam_emr_service_policy"
   role = aws_iam_role.iam_emr_service_role.id
 
   policy = <<EOF
@@ -95,7 +95,7 @@ EOF
 
 # IAM Role for EC2 Instance Profile
 resource "aws_iam_role" "iam_emr_profile_role" {
-  name = "iam_emr_profile_role"
+  # name = "iam_emr_profile_role"
 
   assume_role_policy = <<EOF
 {
@@ -115,12 +115,12 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "emr_profile" {
-  name = "emr_profile"
+  # name = "emr_profile"
   role = aws_iam_role.iam_emr_profile_role.name
 }
 
 resource "aws_iam_role_policy" "iam_emr_profile_policy" {
-  name = "iam_emr_profile_policy"
+  # name = "iam_emr_profile_policy"
   role = aws_iam_role.iam_emr_profile_role.id
 
   policy = <<EOF
