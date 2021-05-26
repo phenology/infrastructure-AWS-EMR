@@ -87,6 +87,7 @@ rm /tmp/miniconda.sh
 echo -e '\nexport PATH=$HOME/miniconda/bin:$PATH' >> $HOME/.bashrc
 source $HOME/.bashrc
 conda update conda -y
+# conda install python=3.7
 
 
 # -----------------------------------------------------------------------------
@@ -122,7 +123,8 @@ pip install rasterio xarray clustering-geodata-cubes
 # 4. Package the environment to be distributed to worker nodes
 # -----------------------------------------------------------------------------
 echo "Packaging environment"
-conda pack -q -o $HOME/environment.tar.gz
+# conda pack -q -o $HOME/environment.tar.gz
+conda pack -q -o $HOME/environment.tar.gz --ignore-missing-files
 
 
 # -----------------------------------------------------------------------------

@@ -32,7 +32,8 @@ conda env list
 conda activate emr
 # conda deactivate
 
-conda install -c conda-forge -y -q 'dask-yarn>=0.7.0' pyarrow s3fs conda-pack
+conda install -c conda-forge -y -q 'dask-yarn>=0.7.0' pyarrow s3fs conda-pack tornado=6.1 gdal
+pip install rasterio xarray clustering-geodata-cubes
 
 # conda env export
 conda env export --from-history
@@ -40,7 +41,7 @@ conda env export --from-history
 
 conda list
 
-conda pack -q -o environment.tar.gz
+conda pack -q -o environment.tar.gz --ignore-missing-files
 
 # mkdir -p my_env
 # tar -xzf environment.tar.gz -C my_env
